@@ -41,7 +41,6 @@ class Dashboard extends Component {
     }));
   }
 
-
     // My solution. It does work, but what's wrong with this?
     // if (this.state.focused) {
     //   this.setState({
@@ -49,8 +48,7 @@ class Dashboard extends Component {
     //   });
     // }
 
-  }
-
+    
   render() {
     const dashboardClasses = classnames("dashboard", {
       "dashboard--focused": this.state.focused
