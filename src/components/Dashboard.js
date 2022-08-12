@@ -5,7 +5,7 @@ import Loading from "./Loading";
 
 class Dashboard extends Component {
   state = {
-    loading: true
+    loading: false
   }
 
   render() {
@@ -14,7 +14,7 @@ class Dashboard extends Component {
     if (this.state.loading) {
       return <Loading />;
     }
-    
+
     return <main className={dashboardClasses} />
   }
 }
