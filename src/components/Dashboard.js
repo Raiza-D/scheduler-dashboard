@@ -3,7 +3,12 @@ import classnames from "classnames";
 import Loading from "./Loading";
 import Panel from "./Panel";
 import axios from "axios";
-
+import {
+  getTotalInterviews,
+  getLeastPopularTimeSlot,
+  getMostPopularDay,
+  getInterviewsPerDay
+} from "helpers/selectors";
 
 // Fake data
 const data = [
