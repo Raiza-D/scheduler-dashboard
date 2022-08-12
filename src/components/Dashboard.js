@@ -105,7 +105,7 @@ class Dashboard extends Component {
         <Panel
           key={panel.id}
           label={panel.label}
-          value={panel.getValue(this.state)}
+          value={panel.getValue(this.state)} // Does this change dynamically?
           onSelect={() => this.selectPanel(panel.id)}
         />
       );
