@@ -32,33 +32,50 @@ const data = [
 class Dashboard extends Component {
   state = {
     loading: false,
-    focused: null
-  }
+    focused: null,
+  };
 
   selectPanel(id) {
-    this.setState(previousState => ({
-      focused: previousState.focused !== null ? null : id
+    this.setState((previousState) => ({
+      focused: previousState.focused !== null ? null : id,
     }));
   }
 
-    // My solution. It does work, but what's wrong with this?
-    // if (this.state.focused) {
-    //   this.setState({
-    //     focused: null
-    //   });
-    // }
+  componentDidMount() {
+    const focused = JSON.parse(localStorage.getItem("focused"));
 
-    
+    if (focused) {
+      this.setState({ focused });
+    }
+  }
+
+  componentDidUpdate(previousProps, previousState) {
+    if (previousState.focused !== this.state.focused) {
+      localStorage.setItem("focused", JSON.stringify(this.state.focused));
+    }
+  }
+
+  // My solution. It does work, but what's wrong with this?
+  // if (this.state.focused) {
+  //   this.setState({
+  //     focused: null
+  //   });
+  // }
+
   render() {
     const dashboardClasses = classnames("dashboard", {
-      "dashboard--focused": this.state.focused
+      "dashboard--focused": this.state.focused,
     });
 
     if (this.state.loading) {
       return <Loading />;
     }
 
-    const indivPanels = (this.state.focused ? data.filter(panel => this.state.focused === panel.id) : data).map((panel) => {
+    const indivPanels = (
+      this.state.focused
+        ? data.filter((panel) => this.state.focused === panel.id)
+        : data
+    ).map((panel) => {
       return (
         <Panel
           key={panel.id}
@@ -66,13 +83,10 @@ class Dashboard extends Component {
           value={panel.value}
           onSelect={() => this.selectPanel(panel.id)}
         />
-      )
+      );
     });
 
-    return (<main className={dashboardClasses}>
-      {indivPanels}
-      </main>
-    );
+    return <main className={dashboardClasses}>{indivPanels}</main>;
   }
 }
 
