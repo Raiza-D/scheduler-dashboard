@@ -66,6 +66,8 @@ class Dashboard extends Component {
       });
     });
 
+    this.socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
+
     if (focused) {
       this.setState({ focused });
     }
@@ -75,6 +77,10 @@ class Dashboard extends Component {
     if (previousState.focused !== this.state.focused) {
       localStorage.setItem("focused", JSON.stringify(this.state.focused));
     }
+  }
+
+  componentWillUnmount() {
+    this.socket.close();
   }
 
   // Why doesn't Local Storage in DevTools > Application update instantaneously?
