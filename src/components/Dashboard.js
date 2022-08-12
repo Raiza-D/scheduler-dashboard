@@ -39,6 +39,12 @@ class Dashboard extends Component {
     this.setState({
       focused: id
     });
+
+    if (this.state.focused) {
+      this.setState({
+        focused: null
+      });
+    }
   }
 
   render() {
