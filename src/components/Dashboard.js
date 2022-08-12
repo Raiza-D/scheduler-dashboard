@@ -11,9 +11,11 @@ class Dashboard extends Component {
   render() {
     const dashboardClasses = classnames("dashboard");
 
-    return <main className={dashboardClasses}>
-      {this.state.loading && <Loading />};
-    </main>
+    if (this.state.loading) {
+      return <Loading />;
+    }
+    
+    return <main className={dashboardClasses} />
   }
 }
 
