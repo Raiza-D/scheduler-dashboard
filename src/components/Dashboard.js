@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import classnames from "classnames";
 import Loading from "./Loading";
 import Panel from "./Panel";
+import axios from "axios";
 
 
 // Fake data
@@ -47,6 +48,19 @@ class Dashboard extends Component {
   componentDidMount() {
     const focused = JSON.parse(localStorage.getItem("focused"));
 
+    Promise.all([
+      axios.get("/api/days"),
+      axios.get("/api/appointments"),
+      axios.get("/api/interviewers"),
+    ]).then(([days, appointments, interviewers]) => {
+      this.setState({
+        loading: false,
+        days: days.data,
+        appointments: appointments.data,
+        interviewers: interviewers.data,
+      });
+    });
+
     if (focused) {
       this.setState({ focused });
     }
@@ -76,6 +90,7 @@ class Dashboard extends Component {
     if (this.state.loading) {
       return <Loading />;
     }
+    console.log(this.state);
 
     const indivPanels = (
       this.state.focused
