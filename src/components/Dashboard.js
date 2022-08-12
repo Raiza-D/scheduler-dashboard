@@ -36,15 +36,19 @@ class Dashboard extends Component {
   }
 
   selectPanel(id) {
-    this.setState({
-      focused: id
-    });
+    this.setState(previousState => ({
+      focused: previousState.focused !== null ? null : id
+    }));
+  }
 
-    if (this.state.focused) {
-      this.setState({
-        focused: null
-      });
-    }
+
+    // My solution. It does work, but what's wrong with this?
+    // if (this.state.focused) {
+    //   this.setState({
+    //     focused: null
+    //   });
+    // }
+
   }
 
   render() {
