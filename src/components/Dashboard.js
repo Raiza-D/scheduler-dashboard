@@ -90,7 +90,6 @@ class Dashboard extends Component {
     if (this.state.loading) {
       return <Loading />;
     }
-    console.log(this.state);
 
     const indivPanels = (
       this.state.focused
