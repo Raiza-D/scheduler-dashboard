@@ -41,7 +41,21 @@ class Dashboard extends Component {
       return <Loading />;
     }
 
-    return <main className={dashboardClasses} />
+    const indivPanels = data.map((panel) => {
+      return (
+        <Panel
+          key={panel.id}
+          id={panel.id}
+          label={panel.label}
+          value={panel.value}
+        />
+      )
+    });
+
+    return (<main className={dashboardClasses}>
+      {indivPanels}
+      </main>
+    );
   }
 }
 
