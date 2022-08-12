@@ -55,6 +55,9 @@ class Dashboard extends Component {
     }
   }
 
+  // Why doesn't Local Storage in DevTools > Application update instantaneously?
+  // Why do we need to click elsewhere then back to LS to see focused value update?
+
   // My solution. It does work, but what's wrong with this?
   // if (this.state.focused) {
   //   this.setState({
